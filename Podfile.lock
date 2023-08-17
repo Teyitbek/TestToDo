@@ -1,0 +1,24 @@
+PODS:
+  - Factory (2.2.0)
+  - OpenCombine (0.14.0)
+  - SwiftGen (6.6.2)
+
+DEPENDENCIES:
+  - Factory
+  - OpenCombine (~> 0.14.0)
+  - SwiftGen (~> 6.0)
+
+SPEC REPOS:
+  trunk:
+    - Factory
+    - OpenCombine
+    - SwiftGen
+
+SPEC CHECKSUMS:
+  Factory: ec9527abfa59ddf2a1b024914b1e380f616f9e03
+  OpenCombine: 99bf5bc4fce0e34507031a9f277e927bbe25a722
+  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
+
+PODFILE CHECKSUM: aa8a3d6e047eed4af738de464c3b6ecfdd6f26b4
+
+COCOAPODS: 1.12.1

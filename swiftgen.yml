@@ -1,0 +1,11 @@
+strings:
+  inputs: TestToDo/Resource/Base.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: TestToDo/Resource/Strings.swift
+xcassets:
+  inputs:
+    - TestToDo/Resource/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: TestToDo/Resource/Assets.swift
