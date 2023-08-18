@@ -129,12 +129,15 @@ extension TabbarVC {
                     self.overlayView.alpha = 0.0
                 }
             }
-            if let text = alert.textFields?.first?.text {
-                var savedItems = UserDefaults.standard.getTasks()
-                savedItems.append(TaskItem(title: text, isCompleted: false))
-                UserDefaults.standard.set(tasks: savedItems)
-                self.taskManager.tasks = savedItems  
-            }
+            guard let text = alert.textFields?.first?.text,
+                  text != ""  else {
+                      print("Empty!")
+                      return }
+            var savedItems = UserDefaults.standard.getTasks()
+            savedItems.append(TaskItem(title: text, isCompleted: false))
+            UserDefaults.standard.set(tasks: savedItems)
+            self.taskManager.tasks = savedItems
+            
         })
         alert.addAction(cancel)
         alert.addAction(save)
