@@ -32,6 +32,7 @@ internal enum Asset {
   internal static let selectedBtnBack = ColorAsset(name: "selectedBtnBack")
   internal static let taskViewBg = ColorAsset(name: "taskViewBg")
   internal static let topView = ColorAsset(name: "topView")
+  internal static let white = ColorAsset(name: "white")
   internal static let addTask = ImageAsset(name: "add_task")
   internal static let calendarGray = ImageAsset(name: "calendarGray")
   internal static let calendarRed = ImageAsset(name: "calendarRed")
@@ -39,8 +40,8 @@ internal enum Asset {
   internal static let cellButton = ImageAsset(name: "cellButton")
   internal static let cellSelected = ImageAsset(name: "cellSelected")
   internal static let cellSelector = ImageAsset(name: "cellSelector")
-  internal static let empty = ImageAsset(name: "empty")
   internal static let emptyRound = ImageAsset(name: "emptyRound")
+  internal static let emptyMiddle = ImageAsset(name: "empty_middle")
   internal static let emptySmall = ImageAsset(name: "empty_small")
   internal static let emptySuperSmall = ImageAsset(name: "empty_super_small")
   internal static let filled = ImageAsset(name: "filled")
@@ -54,6 +55,7 @@ internal enum Asset {
   internal static let launchImage = ImageAsset(name: "launchImage")
   internal static let location = ImageAsset(name: "location")
   internal static let radio = ImageAsset(name: "radio")
+  internal static let rightArrow = ImageAsset(name: "rightArrow")
   internal static let sun = ImageAsset(name: "sun")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

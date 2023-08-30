@@ -11,7 +11,8 @@ final class TaskListVC: BaseVC<TaskListCV, TaskListVM> {
         contentView.tableView.dataSource = self
         contentView.tableView.isEditing = false
         viewModel.taskManager.tasksUpdatedSubject.sink { [weak self] tasks in
-            self?.updateItems()
+            guard let self = self else { return }
+            self.contentView.tableView.reloadData()
         }.store(in: &bag)
         
         view.backgroundColor = Asset.backgroundTaskVC.color
@@ -101,7 +102,7 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 130.adaptToScreenSize
+        return 86.adaptToScreenSize
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -113,9 +114,6 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
 // MARK: Methods for TableView
 @objc
 extension TaskListVC {
-    func updateItems() {
-        contentView.tableView.reloadData()
-    }
     
     func deleteRowAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in

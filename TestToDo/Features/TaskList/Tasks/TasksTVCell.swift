@@ -2,7 +2,7 @@ import UIKit
 import Factory
 
 final class TasksTVCell: TableViewCell<TasksTVCellCV> {
-    @Injected(\.taskManager) var taskManager: TasksManager
+//    @Injected(\.taskManager) var taskManager: TasksManager
     
     var isCompletedAction: (() -> Void)?
     

@@ -5,13 +5,12 @@ enum CustomTabbarButtonState {
     case unselected
 }
 
-// MARK: - Main
 final class CustomTabbarButton: UIControl {
     lazy var imageView = makeImageView()
     lazy var titleLabel = makeTitleLabel()
     
-    private let imageViewHeightWidth: CGFloat = 24.adaptToScreenSize
-    private let topSpacing: CGFloat = 10.adaptToScreenSize
+    private let imageViewHeightWidth = 24.adaptToScreenSize
+    private let topSpacing = 10.adaptToScreenSize
     
     override init(frame: CGRect) {
         super.init(frame: frame)

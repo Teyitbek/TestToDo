@@ -8,7 +8,7 @@ final class TabbarVC: UITabBarController, TabbarView {
     var onTaskListFlowSelect: ((BaseNC) -> Void)?
     var onViewDidLoad: ((BaseNC) -> Void)?
     
-    lazy var customTabbar = Tabbar()
+    lazy var customTabbar = TabbarCV()
     
     enum Tab: Int {
         case home
@@ -94,7 +94,7 @@ extension TabbarVC: UITabBarControllerDelegate {
 }
 
 extension TabbarVC: TabbarDelegate {
-    func didSelect(tag: Int, view: Tabbar) {
+    func didSelect(tag: Int, view: TabbarCV) {
         selectedIndex = tag
         tabBarController(self, didSelect: viewControllers?[selectedIndex] as! BaseNC)
     }
@@ -137,7 +137,6 @@ extension TabbarVC {
             savedItems.append(TaskItem(title: text, isCompleted: false))
             UserDefaults.standard.set(tasks: savedItems)
             self.taskManager.tasks = savedItems
-            
         })
         alert.addAction(cancel)
         alert.addAction(save)

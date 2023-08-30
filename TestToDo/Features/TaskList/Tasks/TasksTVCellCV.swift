@@ -4,8 +4,6 @@ final class TasksTVCellCV: UIView {
     lazy var isCompletedButton = makeButton(image: Asset.emptyRound.image)
     lazy var label = makeLabel()
     
-    var isSelected: Bool = false
-    
     private let cellItemsHeight = 35.adaptToScreenSize
     private let spacing = 15.adaptToScreenSize
     
@@ -62,8 +60,8 @@ private extension TasksTVCellCV {
         return label
     }
     
-    func makeButton( image: UIImage) -> ImageButton {
-        let button = ImageButton()
+    func makeButton( image: UIImage) -> UIButton {
+        let button = UIButton()
         button.contentMode = .scaleAspectFill
         button.setImage(image, for: .normal)
         button.backgroundColor = .clear

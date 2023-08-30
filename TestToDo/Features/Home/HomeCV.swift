@@ -1,29 +1,34 @@
 import UIKit
 
-final class HomeCV: UIView {
-    public lazy var emptyImageView = makeBgImage()
-    public lazy var filledImageView = makeBgImage()
+public final class HomeCV: UIView {
+    lazy var emptyImageView = makeBgImage()
+    lazy var filledImageView = makeBgImage()
     
-    public lazy var locationView = makeLocationView()
-    public lazy var locationImage = makeImageView()
-    public lazy var locationLabel = makeLabel(font: .systemFont(ofSize: 18))
-    public lazy var greetingLabel = makeLabel(font: .boldSystemFont(ofSize: 24))
-    public lazy var hiEmojiImage = makeImageView()
-    public lazy var sunImage = makeImageView()
-    public lazy var viewForCollection = makeViewForCollection(color: UIColor(white: 1, alpha: 0.3),
-                                                              cornerRadius: 8.adaptToScreenSize)
-    public lazy var lineViewInsideView = makeViewForCollection(cornerRadius: 5)
-    public lazy var collectionView = makeCollectionView()
+    lazy var locationView = makeLocationView()
+    lazy var locationImage = makeImageView()
+    lazy var locationLabel = makeLabel(font: .systemFont(ofSize: 18))
+    lazy var greetingLabel = makeLabel(font: .boldSystemFont(ofSize: 24))
+    lazy var greetingEmojiImage = makeImageView()
+    lazy var sunImageView = makeImageView()
+    lazy var viewForCollection = makeViewForCollection(color: .clear, cornerRadius: 12.adaptToScreenSize)
+    lazy var collectionView = makeCollectionView()
+    lazy var infoView = makeInfoView(image: Asset.rightArrow.image)
     
-    let topSpacing = 15.adaptToScreenSize
-    let locationViewHeight = 32.adaptToScreenSize
-    let locationViewWidth = 200.adaptToScreenSize
-    let locationImageHeight = 25.adaptToScreenSize
-    let greetingLabelHeight = 35.adaptToScreenSize
-    let sunImageHeight = 78.adaptToScreenSize
-    let collectionBottomSpacing = 140.adaptToScreenSize
-    let lineViewInsideViewWidth = 4.adaptToScreenSize
-    let completedHeight = 592.adaptToScreenSize
+    private let locationSpacing = 15.adaptToScreenSize
+    private let spacingInsideLocation = 7.adaptToScreenSize
+    private let greetingSpacing = 15.adaptToScreenSize
+    private let sunImageSpacing = 40.adaptToScreenSize
+    private let collectionTrailing = 15.adaptToScreenSize
+    private let locationViewHeight = 32.adaptToScreenSize
+    private let locationViewWidth = 200.adaptToScreenSize
+    private let locationImageHeight = 25.adaptToScreenSize
+    private let greetingLabelHeight = 35.adaptToScreenSize
+    private let sunImageHeight = 78.adaptToScreenSize
+    private let collectionBottomSpacing = 140.adaptToScreenSize
+    private let lineViewInsideViewWidth = 4.adaptToScreenSize
+    private let completedHeight = 592.adaptToScreenSize
+    private let infoViewSpacing = 24.adaptToScreenSize
+    private let collectionViewWidth = 32.adaptToScreenSize
     
     var filledBgImageViewHeightConstraint: NSLayoutConstraint?
     
@@ -33,7 +38,7 @@ final class HomeCV: UIView {
         setProperties()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         setConstraints()
     }
@@ -51,12 +56,12 @@ extension HomeCV: Customizable {
         addSubview(locationView)
         locationView.addSubview(locationImage)
         locationView.addSubview(locationLabel)
-        addSubview(hiEmojiImage)
+        addSubview(greetingEmojiImage)
         addSubview(greetingLabel)
-        addSubview(sunImage)
+        addSubview(sunImageView)
         addSubview(viewForCollection)
-        viewForCollection.addSubview(lineViewInsideView)
         viewForCollection.addSubview(collectionView)
+        viewForCollection.addSubview(infoView)
     }
     
     func setConstraints() {
@@ -80,63 +85,61 @@ extension HomeCV: Customizable {
         ])
         
         locationView.anchor(
-            .top(safeAreaLayoutGuide.topAnchor, constant: topSpacing),
-            .leading(leadingAnchor, constant: topSpacing),
+            .top(safeAreaLayoutGuide.topAnchor, constant: locationSpacing),
+            .leading(leadingAnchor, constant: locationSpacing),
             .height(locationViewHeight),
             .widthGreaterThanConstant(locationViewWidth)
         )
         
         locationImage.anchor(
-            .leading(locationView.leadingAnchor, constant: topSpacing / 2),
+            .leading(locationView.leadingAnchor, constant: spacingInsideLocation),
             .centerY(locationView.centerYAnchor),
             .height(locationImageHeight),
-            .trailing(locationLabel.leadingAnchor, constant: topSpacing / 2)
+            .trailing(locationLabel.leadingAnchor, constant: spacingInsideLocation)
         )
         
         locationLabel.anchor(
             .centerY(locationView.centerYAnchor),
-            .trailing(locationView.trailingAnchor, constant: topSpacing / 2),
+            .trailing(locationView.trailingAnchor, constant: spacingInsideLocation),
             .height(locationImageHeight)
         )
         
         greetingLabel.anchor(
-            .top(locationView.bottomAnchor, constant: topSpacing),
-            .leading(leadingAnchor, constant: topSpacing),
+            .top(locationView.bottomAnchor, constant: greetingSpacing),
+            .leading(leadingAnchor, constant: greetingSpacing),
             .height(locationViewHeight * 2)
         )
         
-        hiEmojiImage.anchor(
-            .leading(greetingLabel.trailingAnchor, constant: topSpacing / 2),
+        greetingEmojiImage.anchor(
+            .leading(greetingLabel.trailingAnchor, constant: greetingSpacing / 2),
             .centerY(greetingLabel.centerYAnchor),
             .height(locationViewHeight * 2)
         )
         
-        sunImage.anchor(
-            .top(greetingLabel.bottomAnchor, constant: topSpacing * 3),
-            .leading(leadingAnchor, constant: topSpacing * 2),
+        sunImageView.anchor(
+            .top(greetingLabel.bottomAnchor, constant: sunImageSpacing),
+            .leading(leadingAnchor, constant: sunImageSpacing),
             .height(sunImageHeight),
             .width(sunImageHeight)
         )
         
         viewForCollection.anchor(
-            .top(sunImage.centerYAnchor),
-            .trailing(trailingAnchor, constant: topSpacing),
-            .width(locationViewHeight),
+            .top(sunImageView.centerYAnchor),
+            .trailing(trailingAnchor, constant: collectionTrailing),
+            .width(collectionViewWidth),
             .bottom(bottomAnchor, constant: collectionBottomSpacing)
-        )
-        
-        lineViewInsideView.anchor(
-            .top(viewForCollection.topAnchor, constant: topSpacing / 2),
-            .bottom(viewForCollection.bottomAnchor, constant: topSpacing / 2),
-            .centerX(viewForCollection.centerXAnchor),
-            .width(lineViewInsideViewWidth)
         )
         
         collectionView.anchor(
             .top(viewForCollection.topAnchor),
-            .leading(viewForCollection.leadingAnchor, constant: topSpacing / 3),
-            .trailing(viewForCollection.trailingAnchor, constant: topSpacing / 3),
+            .leading(viewForCollection.leadingAnchor),
+            .trailing(viewForCollection.trailingAnchor),
             .bottom(viewForCollection.bottomAnchor)
+        )
+        
+        infoView.anchor(
+            .trailing(collectionView.leadingAnchor, constant: infoViewSpacing),
+            .centerY(collectionView.topAnchor)
         )
     }
     
@@ -149,9 +152,11 @@ extension HomeCV: Customizable {
             emptyImageView.image = Asset.emptySmall.image // MARK: - small set for ipod touch 7
             filledImageView.image = Asset.filledSmall.image
         case .large:
-            emptyImageView.image = Asset.empty.image
+            emptyImageView.image = Asset.emptyMiddle.image
             filledImageView.image = Asset.filled.image
         }
+        
+        backgroundColor = Asset.lightBg.color
     }
 }
 
@@ -162,7 +167,10 @@ extension HomeCV {
         filledBgImageViewHeightConstraint = filledImageView.heightAnchor.constraint(equalToConstant: completedHeight * percent)
         filledBgImageViewHeightConstraint?.isActive = true
         filledImageView.isHidden = (percent == 0)
-        layoutIfNeeded()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
     }
 }
 
@@ -207,9 +215,14 @@ private extension HomeCV {
                                         cells: [
                                             ResultCVCell.self
                                         ])
-//        collection.isScrollEnabled = false
+        collection.isScrollEnabled = true
         return collection
     }
     
+    func makeInfoView(image: UIImage) -> InfoView {
+        let view = InfoView()
+        view.imageView.image = image
+        return view
+    }
 }
 

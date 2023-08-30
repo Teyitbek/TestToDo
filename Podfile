@@ -7,6 +7,4 @@ target 'TestToDo' do
 
 pod 'SwiftGen', '~> 6.0'
 pod 'Factory'
-pod 'OpenCombine', '~> 0.14.0'
-
 end

@@ -34,13 +34,11 @@ final class TasksManager: NSObject {
                 completed += 1
             }
         }
-
         if count > 0 {
             percent = CGFloat(completed) / CGFloat(count)
         } else {
             percent = 0
         }
-        
         return percent
     }
 }
